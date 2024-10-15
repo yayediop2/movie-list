@@ -1,0 +1,70 @@
+    ☐ ### 1. **Project Setup**
+       ☐ Create a new Flutter project.
+       ☐ Organize your folders:
+         ☐ `/models`: For the `Movie` model class.
+         ☐ `/screens`: For different app screens like `HomePage`, `MovieDetailsPage`.
+         ☐ `/widgets`: For reusable UI components like a custom `MovieCard`.
+         ☐ `/services`: For loading and handling JSON data or interacting with a database later on.
+       
+   
+    ☐ ### 2. **Movie Model and JSON Parsing**
+       ☐ **Create Movie Class**:
+         ☐ Add the required properties: `genre`, `imdbRating`, `title`, and `poster`.
+         ☐ Add the `fromJson` method for deserialization from the JSON file.
+        
+       ☐ **Create JSON Loading Service**:
+         ☐ Write a function to load the JSON file (use `rootBundle` to access local assets).
+         ☐ Return a list of `Movie` objects.
+     
+    ☐ ### 3. **Home Page (Top Rated Movies List)**
+       ☐ **Create HomePage UI**:
+         ☐ Stateless widget for the `HomePage`.
+         ☐ Use `FutureBuilder` to fetch and display movies.
+         ☐ Implement a `ListView` to show a `MovieCard` for each movie (include title, poster, and genre).
+       
+       ☐ **Create MovieCard Widget** (Stateless):
+         ☐ Create a `MovieCard` widget in `/widgets` that displays the movie image, title, and genre.
+         ☐ Use this widget in the `HomePage`.
+     
+    ☐ ### 4. **Search Functionality**
+       ☐ **Add a Search Bar**:
+         ☐ Create a `SearchBar` widget (Stateless) in `/widgets` folder.
+         ☐ Add it to the `AppBar` of the `HomePage`.
+         ☐ Use a `TextField` for user input and filter the list of movies.
+       
+       ☐ **Implement Search Logic**:
+         ☐ In the `HomePage`, filter movies based on user input using a case-insensitive search (similar to SQL's `ILIKE`).
+   
+    ☐ ### 5. **Movie Details Page**
+       ☐ **Create MovieDetailsPage** (Stateless):
+         ☐ Display detailed information for the selected movie.
+         ☐ Pass the selected movie object using `Navigator.pushNamed`.
+         ☐ Add parameters like title, genre, year, actors, plot, and poster.
+         ☐ Use a `SingleChildScrollView` to handle overflow.
+       
+       ☐ **Add Back Navigation**:
+         ☐ The `AppBar` should have a back button.
+    
+    ☐ ### 6. **Navigation**
+       ☐ **Named Routes Setup**:
+         ☐ Configure routes in `main.dart`.
+       ☐ 
+       ☐ **Smooth Navigation Transitions**:
+         ☐ Customize navigation transitions using `PageRouteBuilder` if required.
+  
+    ☐ ### 7. **Bonus Features**
+       ☐ **Infinite Scroll**:
+         ☐ Implement infinite scrolling if you have a large dataset. Load more movies as the user scrolls down.
+         ☐ This can be done by using `ScrollController` in the `ListView`.
+    
+       ☐ **Overscroll Animation**:
+         ☐ You can use `BouncingScrollPhysics` for overscroll behavior in the `ListView`.
+    
+       ☐ **Replace JSON with Database (Bonus)**:
+         ☐ Migrate data handling to a local database like SQLite or Hive to store and fetch movie data more efficiently.
+  
+    ☐ ### 8. **Final Touches**
+       ☐ Ensure responsive UI across different devices.
+       ☐ Test navigation, search functionality, and error handling (e.g., what happens when no movies match the search).
+       ☐ Review and optimize code for readability, ensuring Stateless Widgets are used wherever possible to keep the app performant.
+  
