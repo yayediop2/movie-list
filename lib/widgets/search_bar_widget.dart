@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatelessWidget {
   final Function(String) onTextChanged;
-  const SearchBarWidget({super.key,required this.onTextChanged});
+  const SearchBarWidget({super.key, required this.onTextChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +11,15 @@ class SearchBarWidget extends StatelessWidget {
       child: SizedBox(
         width: 200,
         child: TextField(
-          decoration: const InputDecoration(
-            hintText: 'Search movies...',
-            border: InputBorder.none,
-            icon: Icon(Icons.search),
+          decoration: InputDecoration(
+            hintText: 'search...',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            prefixIcon: const Icon(Icons.search),
+            filled: true,
+            focusColor: Colors.green,
+            fillColor: Colors.white,
           ),
           onChanged: (text) {
             onTextChanged(text);

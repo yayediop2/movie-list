@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app_movies/screens/movie_details_page.dart';
 import '../models/movie.dart';
 
 class MovieCard extends StatelessWidget {
@@ -8,14 +9,13 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.network(movie.poster, width: 50, height: 75, fit: BoxFit.cover),
+      leading: Image.network(movie.poster, width: 35, height: 75, fit: BoxFit.cover),
       title: Text(movie.title),
       subtitle: Text(movie.genre),
       onTap: () {
-        Navigator.pushNamed(
+        Navigator.push(
           context,
-          '/movie',
-          arguments: movie,
+          MaterialPageRoute(builder: (context) => MovieDetailsPage(movie: movie)),
         );
       },
     );

@@ -5,7 +5,7 @@ import '../widgets/movie_card.dart';
 import '../widgets/search_bar_widget.dart';
 
 class HomePage extends StatefulWidget {
-    const HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -25,7 +25,25 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Top Rated Movies'),
+        backgroundColor: const Color.fromARGB(226, 244, 44, 4),
+        title: Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            "Top Rated Movies",
+            style: TextStyle(
+              fontSize: 35,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              shadows: [
+                Shadow(
+                  blurRadius: 10.0,
+                  color: Colors.black.withOpacity(0.3),
+                  offset: const Offset(2.0, 2.0),
+                ),
+              ],
+            ),
+          ),
+        ),
         actions: [
           SearchBarWidget(onTextChanged: (text) {
             setState(() {
@@ -42,8 +60,18 @@ class _HomePageState extends State<HomePage> {
           } else if (snapshot.hasError) {
             return const Center(child: Text('Error loading movies'));
           } else {
-            List<Movie> filteredMovies = snapshot.data!.where((movie) {
-              return movie.title.toLowerCase().contains(searchText.toLowerCase());
+             List<Movie> orderedMovies = snapshot.data!
+              ..sort((a, b) {
+                // Convert "N/A" ratings to 0 for sorting
+                double aRating = a.imdbRating == "N/A" ? 0 : double.tryParse(a.imdbRating) ?? 0;
+                double bRating = b.imdbRating == "N/A" ? 0 : double.tryParse(b.imdbRating) ?? 0;
+                return bRating.compareTo(aRating); 
+              });
+
+            List<Movie> filteredMovies = orderedMovies.where((movie) {
+              return movie.title
+                  .toLowerCase()
+                  .contains(searchText.toLowerCase());
             }).toList();
 
             return ListView.builder(

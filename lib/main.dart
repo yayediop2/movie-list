@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/home_page.dart';
-import 'screens/movie_details_page.dart';
+// import 'screens/movie_details_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,11 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomePage(),
-        '/movie': (context) => const MovieDetailsPage(),
-      },
+      home: const HomePage(),
     );
   }
 }
