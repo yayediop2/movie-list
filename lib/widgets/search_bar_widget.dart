@@ -9,7 +9,8 @@ class SearchBarWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: SizedBox(
-        width: 200,
+        width: 140,
+        height: 40,
         child: TextField(
           decoration: InputDecoration(
             hintText: 'search...',

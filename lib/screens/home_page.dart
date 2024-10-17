@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
           child: Text(
             "Top Rated Movies",
             style: TextStyle(
-              fontSize: 35,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white,
               shadows: [
@@ -60,24 +60,34 @@ class _HomePageState extends State<HomePage> {
           } else if (snapshot.hasError) {
             return const Center(child: Text('Error loading movies'));
           } else {
-             List<Movie> orderedMovies = snapshot.data!
+            List<Movie> orderedMovies = snapshot.data!
               ..sort((a, b) {
-                // Convert "N/A" ratings to 0 for sorting
                 double aRating = a.imdbRating == "N/A" ? 0 : double.tryParse(a.imdbRating) ?? 0;
                 double bRating = b.imdbRating == "N/A" ? 0 : double.tryParse(b.imdbRating) ?? 0;
-                return bRating.compareTo(aRating); 
+                return bRating.compareTo(aRating);
               });
-
             List<Movie> filteredMovies = orderedMovies.where((movie) {
-              return movie.title
-                  .toLowerCase()
-                  .contains(searchText.toLowerCase());
+              return movie.title.toLowerCase().contains(searchText.toLowerCase());
             }).toList();
 
-            return ListView.builder(
-              itemCount: filteredMovies.length,
-              itemBuilder: (context, index) {
-                return MovieCard(movie: filteredMovies[index]);
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                int crossAxisCount = constraints.maxWidth ~/ 150;
+                crossAxisCount = crossAxisCount.clamp(1, 3);
+                
+                return GridView.builder(
+                  padding: const EdgeInsets.all(8),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    childAspectRatio: 1,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                  ),
+                  itemCount: filteredMovies.length,
+                  itemBuilder: (context, index) {
+                    return MovieCard(movie: filteredMovies[index]);
+                  },
+                );
               },
             );
           }

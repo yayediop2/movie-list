@@ -9,7 +9,25 @@ class MovieDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(movie.title),
+        backgroundColor: const Color.fromARGB(226, 244, 44, 4),
+        title: Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            movie.title,
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              shadows: [
+                Shadow(
+                  blurRadius: 10.0,
+                  color: Colors.black.withOpacity(0.3),
+                  offset: const Offset(2.0, 2.0),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -38,7 +56,8 @@ class MovieDetailsPage extends StatelessWidget {
                             end: Alignment.bottomCenter,
                             colors: [
                               const Color.fromARGB(0, 0, 0, 0),
-                              const Color.fromARGB(101, 0, 0, 0).withOpacity(0.7),
+                              const Color.fromARGB(101, 0, 0, 0)
+                                  .withOpacity(0.7),
                             ],
                           ),
                         ),
@@ -51,11 +70,15 @@ class MovieDetailsPage extends StatelessWidget {
               Text(
                 'Released: ${movie.released}',
                 style: const TextStyle(fontSize: 14),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 10),
               Text(
                 'Genre: ${movie.genre}',
                 style: const TextStyle(fontSize: 14),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 10),
               Text(
@@ -66,11 +89,15 @@ class MovieDetailsPage extends StatelessWidget {
               Text(
                 'Actors: ${movie.actors}',
                 style: const TextStyle(fontSize: 14),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 10),
               Text(
                 'Plot: ${movie.plot}',
                 style: const TextStyle(fontSize: 14),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 10),
               Text(
@@ -86,6 +113,8 @@ class MovieDetailsPage extends StatelessWidget {
               Text(
                 'Awards: ${movie.awards}',
                 style: const TextStyle(fontSize: 14),
+                 maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 10),
               Text(
